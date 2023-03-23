@@ -17,3 +17,5 @@ The output is the computed `water_depth` or the depth of the water in the channe
 
 To compare the 2 languages for performance, use the file `flow_python.py` for python, just run it using python 3 version. For the
 C counterpart, compile and run the code `flow_c.c`.
+
+![c-python](https://user-images.githubusercontent.com/19258246/227296560-eeb22b57-d3ca-45b8-a519-d2cd93a7c758.png)
