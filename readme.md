@@ -12,3 +12,8 @@ This is a program for calculating water depth in a open channel flow for rectang
 `base_width` - The width of the channel in `meters`
 
 The output is the computed `water_depth` or the depth of the water in the channel in `meters`.
+
+# Comparison between C and Python
+
+To compare the 2 languages for performance, use the file `flow_python.py` for python, just run it using python 3 version. For the
+C counterpart, compile and run the code `flow_c.c`.
