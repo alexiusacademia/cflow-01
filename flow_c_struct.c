@@ -13,6 +13,11 @@ struct RectangularChannel
     float discharge;
     float channel_slope;
     float n_manning;
+
+    float w_perimeter; // Calculated wetted perimeter
+    float f_area;      // Calculated flow area
+    float h_radius;    // Hydraulic radius
+    float a_velocity;  // Average velocity
 };
 
 int main()
@@ -32,20 +37,15 @@ int main()
     const float increment = 0.00001; // Increment for the trial of water depth each loop
     rc.water_depth = 0;              // Reset to zero
 
-    float w_perimeter; // Calculated wetted perimeter
-    float f_area;      // Calculated flow area
-    float h_radius;    // Hydraulic radius
-    float a_velocity;  // Average velocity
-
     long long milliseconds;
 
     while (trial_discharge < rc.discharge)
     {
-        w_perimeter = rc.base_width + (2 * rc.water_depth);
-        f_area = rc.base_width * rc.water_depth;
-        h_radius = f_area / w_perimeter;
-        a_velocity = (1 / rc.n_manning) * powf(h_radius, (2.0 / 3.0)) * sqrt(rc.channel_slope);
-        trial_discharge = a_velocity * f_area;
+        rc.w_perimeter = rc.base_width + (2 * rc.water_depth);
+        rc.f_area = rc.base_width * rc.water_depth;
+        rc.h_radius = rc.f_area / rc.w_perimeter;
+        rc.a_velocity = (1 / rc.n_manning) * powf(rc.h_radius, (2.0 / 3.0)) * sqrt(rc.channel_slope);
+        trial_discharge = rc.a_velocity * rc.f_area;
 
         rc.water_depth += increment;
     }
